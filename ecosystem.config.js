@@ -3,7 +3,7 @@ module.exports = {
     {
       name: 'api',
       namespace: 'hotel-administration',
-      script: '/dist/main.js',
+      script: 'dist/main.js',
       watch: false,
       env: {
         NODE_ENV: 'development',
