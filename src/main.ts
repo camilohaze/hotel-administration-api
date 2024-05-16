@@ -59,6 +59,6 @@ async function bootstrap() {
   app.use(nestCsrf());
   app.use(compression());
 
-  await app.listen(3000);
+  await app.listen(process.env.NODE_PORT || 3000);
 }
 bootstrap();
