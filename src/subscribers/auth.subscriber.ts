@@ -6,7 +6,7 @@ import {
   InsertEvent,
 } from 'typeorm';
 
-import { AuthEntity } from 'src/entities/auth.entity';
+import { AuthEntity } from '@entities';
 
 /**
  * Auth subscriber.

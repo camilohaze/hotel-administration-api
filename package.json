@@ -13,7 +13,7 @@
     "start:debug": "set NODE_ENV=development && nest start --debug --watch",
     "start:prod": "set NODE_ENV=production && node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "test": "jest",
+    "test": "set NODE_ENV=test && jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
@@ -77,6 +77,19 @@
       "json",
       "ts"
     ],
+    "moduleDirectories": [
+      "node_modules",
+      "@entities",
+      "@enums",
+      "@filters",
+      "@interfaces",
+      "@middleware",
+      "@models",
+      "@modules",
+      "@services",
+      "@strategies",
+      "@subscribers"
+    ],
     "rootDir": "src",
     "testRegex": ".*\\.spec\\.ts$",
     "transform": {
@@ -86,6 +99,18 @@
       "**/*.(t|j)s"
     ],
     "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "moduleNameMapper": {
+      "@entities": ["<rootDir>/entities/index"],
+      "@enums": ["<rootDir>/enums/index"],
+      "@filters": ["<rootDir>/filters/index"],
+      "@interfaces": ["<rootDir>/interfaces/index"],
+      "@middleware": ["<rootDir>/middleware/index"],
+      "@models": ["<rootDir>/models/index"],
+      "@modules": ["<rootDir>/modules/index"],
+      "@services": ["<rootDir>/services/index"],
+      "@strategies": ["<rootDir>/strategies/index"],
+      "@subscribers": ["<rootDir>/subscribers/index"]
+    }
   }
 }
