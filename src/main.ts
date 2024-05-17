@@ -28,6 +28,8 @@ async function bootstrap() {
       undefined,
       'http://34.86.9.127',
       'https://34.86.9.127',
+      'http://localhost:3000',
+      'https://localhost:3000',
       'http://localhost:4200',
       'https://localhost:4200',
       'http://localhost',
