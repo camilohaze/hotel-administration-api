@@ -26,6 +26,8 @@ async function bootstrap() {
   const corsSettings = {
     origin: [
       undefined,
+      'http://34.86.9.127',
+      'https://34.86.9.127',
       'http://localhost:4200',
       'https://localhost:4200',
       'http://localhost',
