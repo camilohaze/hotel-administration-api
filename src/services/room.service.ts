@@ -41,6 +41,7 @@ export class RoomService {
         {
           hotel: {
             cityId,
+            status: true,
           },
           roomType: [
             {

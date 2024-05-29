@@ -34,14 +34,8 @@ async function bootstrap() {
       'https://localhost:4200',
       'http://localhost',
       'https://localhost',
-      'http://inplace.site',
-      'https://inplace.site',
-      'http://inplace.uno',
-      'https://inplace.uno',
     ],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-    preflightContinue: false,
-    optionsSuccessStatus: 204,
     credentials: true,
   };
 

@@ -132,6 +132,26 @@ export class HotelController {
   }
 
   /**
+   * Toggle hotel status.
+   *
+   * @param {HotelEntity} hotel
+   * @returns {Promise<HotelEntity>}
+   * @memberof HotelController
+   */
+  @Put('toggleStatus')
+  @ApiOperation({ description: 'Toggle hotel status' })
+  @ApiResponse({
+    status: 200,
+    description: 'Return the updated hotel.',
+    isArray: false,
+    type: HotelEntity,
+  })
+  @UseGuards(AuthGuard('jwt'))
+  public async toggleStatus(@Body() hotel: HotelEntity): Promise<HotelEntity> {
+    return await this.hotelService.toggleStatus(hotel);
+  }
+
+  /**
    * Destroy hotel.
    *
    * @param {HotelEntity} hotel

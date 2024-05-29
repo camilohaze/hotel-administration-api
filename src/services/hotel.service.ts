@@ -55,14 +55,24 @@ export class HotelService {
   }
 
   public async update(hotel: HotelEntity): Promise<HotelEntity> {
-    const rooms = [...hotel.rooms];
+    let rooms = [...hotel.rooms];
     delete hotel.rooms;
 
     const { id } = await this.hotelRepository.save(hotel);
 
+    rooms = rooms.map((room) => {
+      room.hotelId = id;
+
+      return room;
+    });
+
     await this.roomEntity.save(rooms);
 
-    return this.getById(id);
+    return await this.getById(id);
+  }
+
+  public async toggleStatus(hotel: HotelEntity): Promise<HotelEntity> {
+    return await this.hotelRepository.save(hotel);
   }
 
   public async destroy(hotel: HotelEntity): Promise<HotelEntity> {
