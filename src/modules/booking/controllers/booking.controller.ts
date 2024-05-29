@@ -16,6 +16,7 @@ import {
   ApiResponse,
 } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
+import { MailerService } from '@nestjs-modules/mailer';
 
 import { BookingEntity } from '@entities';
 import { BookingService } from '@services';
@@ -37,9 +38,13 @@ export class BookingController {
   /**
    * Creates an instance of BookingController.
    * @param {BookingService} bookingService
+   * @param {MailerService} mailerService
    * @memberof BookingController
    */
-  public constructor(private readonly bookingService: BookingService) {}
+  public constructor(
+    private readonly bookingService: BookingService,
+    private readonly mailerService: MailerService,
+  ) {}
 
   /**
    * Get all bookings.
@@ -137,7 +142,27 @@ export class BookingController {
     type: BookingEntity,
   })
   public async store(@Body() booking: BookingEntity): Promise<BookingEntity> {
-    return await this.bookingService.store(booking);
+    try {
+      const { id } = await this.bookingService.store(booking);
+
+      booking = await this.getById(id);
+
+      const { guests } = booking;
+
+      this.mailerService.sendMail({
+        to: guests.map((guest) => guest.email),
+        from: 'noreply@viajeros2024.com',
+        subject: 'Hotel booking ✔',
+        template: './booking',
+        context: {
+          booking,
+        },
+      });
+
+      return booking;
+    } catch (error) {
+      return error;
+    }
   }
 
   /**

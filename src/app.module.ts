@@ -1,6 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ThrottlerModule } from '@nestjs/throttler';
+import { MailerModule } from '@nestjs-modules/mailer';
+import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
 
 import { JwtStrategy, JwtRefreshStrategy } from '@strategies';
 import { ConfigService } from '@services';
@@ -32,6 +34,28 @@ const config: ConfigService = new ConfigService(
         limit: config.get('THROTTLER_LIMIT'),
       },
     ]),
+    MailerModule.forRoot({
+      transport: {
+        service: config.get('SMTP_SERVICE'),
+        host: config.get('SMTP_HOST'),
+        port: config.get('SMTP_PORT'),
+        secure: config.get('SMTP_SECURE'),
+        auth: {
+          user: config.get('SMTP_AUTH_USER'),
+          pass: config.get('SMTP_AUTH_PASS'),
+        },
+      },
+      defaults: {
+        from: config.get('SMTP_DEFAULTS_FROM'),
+      },
+      template: {
+        dir: __dirname + config.get('TEMPLATE_DIR'),
+        adapter: new HandlebarsAdapter(),
+        options: {
+          strict: config.get('TEMPLATE_OPTIONS_STRICT'),
+        },
+      },
+    }),
     TypeOrmModule.forRoot({
       schema: config.get('DATABASE'),
       type: config.get('DRIVER'),

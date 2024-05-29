@@ -20,6 +20,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
+    "@nestjs-modules/mailer": "^2.0.2",
     "@nestjs/common": "^10.0.0",
     "@nestjs/core": "^10.0.0",
     "@nestjs/graphql": "^12.1.1",
@@ -35,10 +36,12 @@
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.4.5",
     "graphql": "^16.8.1",
+    "handlebars": "^4.7.8",
     "helmet": "^7.1.0",
     "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.9.7",
     "ncsrf": "^1.1.0",
+    "nodemailer": "^6.9.13",
     "passport": "^0.7.0",
     "passport-http-bearer": "^1.0.1",
     "passport-jwt": "^4.0.1",
@@ -101,16 +104,36 @@
     "coverageDirectory": "../coverage",
     "testEnvironment": "node",
     "moduleNameMapper": {
-      "@entities": ["<rootDir>/entities/index"],
-      "@enums": ["<rootDir>/enums/index"],
-      "@filters": ["<rootDir>/filters/index"],
-      "@interfaces": ["<rootDir>/interfaces/index"],
-      "@middleware": ["<rootDir>/middleware/index"],
-      "@models": ["<rootDir>/models/index"],
-      "@modules": ["<rootDir>/modules/index"],
-      "@services": ["<rootDir>/services/index"],
-      "@strategies": ["<rootDir>/strategies/index"],
-      "@subscribers": ["<rootDir>/subscribers/index"]
+      "@entities": [
+        "<rootDir>/entities/index"
+      ],
+      "@enums": [
+        "<rootDir>/enums/index"
+      ],
+      "@filters": [
+        "<rootDir>/filters/index"
+      ],
+      "@interfaces": [
+        "<rootDir>/interfaces/index"
+      ],
+      "@middleware": [
+        "<rootDir>/middleware/index"
+      ],
+      "@models": [
+        "<rootDir>/models/index"
+      ],
+      "@modules": [
+        "<rootDir>/modules/index"
+      ],
+      "@services": [
+        "<rootDir>/services/index"
+      ],
+      "@strategies": [
+        "<rootDir>/strategies/index"
+      ],
+      "@subscribers": [
+        "<rootDir>/subscribers/index"
+      ]
     }
   }
 }

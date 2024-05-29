@@ -12,6 +12,10 @@
       {
         "include": "keys/**",
         "watchAssets": true
+      },
+      {
+        "include": "templates/**",
+        "watchAssets": true
       }
     ]
   }
