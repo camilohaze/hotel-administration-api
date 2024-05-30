@@ -162,9 +162,9 @@ export class RoomController {
   }
 
   /**
-   * Destroy room.
+   * Destroy rooms.
    *
-   * @param {RoomEntity} room
+   * @param {RoomEntity[]} rooms
    * @returns {Promise<RoomEntity>}
    * @memberof RoomController
    */
@@ -177,7 +177,7 @@ export class RoomController {
     type: RoomEntity,
   })
   @UseGuards(AuthGuard('jwt'))
-  public async destroy(@Body() room: RoomEntity): Promise<RoomEntity> {
-    return await this.roomService.destroy(room);
+  public async destroy(@Body() rooms: RoomEntity[]): Promise<RoomEntity[]> {
+    return await this.roomService.destroy(rooms);
   }
 }

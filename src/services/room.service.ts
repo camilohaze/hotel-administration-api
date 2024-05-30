@@ -76,7 +76,7 @@ export class RoomService {
     return await this.roomRepository.save(room);
   }
 
-  public async destroy(room: RoomEntity): Promise<RoomEntity> {
-    return await this.roomRepository.remove(room);
+  public async destroy(rooms: RoomEntity[]): Promise<RoomEntity[]> {
+    return await this.roomRepository.remove(rooms);
   }
 }
